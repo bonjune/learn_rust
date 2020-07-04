@@ -56,3 +56,25 @@ Same as deep copy in other programmin languages
 
 Passing variables to a function will move or copy.
 Returng a variable from a function will transfer ownership of the variable.
+
+## References and Borrowing
+
+- What reference only can do is *refer* the data, not *own* the data
+- done by `&` keyword
+- having a reference as a function parameter is called borrowing
+
+## Mutable reference
+
+- references are immutable by default
+- `mut` keyword for mutable reference
+- multiple mutable references to one variable is not allowed
+- mutable reference with immutable reference is not allowed
+- Immutable referencing does not expect the data changed
+
+## Dangling References
+
+Dangling Reference referencing a location thay may have been given to someone else, by freeing some memory while preserving a pointer to that memory.
+
+A reference in Rust is guaranteed not to be dangling.
+
+The compiler will ensure the data will not go out of scope before the reference to the data does, i.e. data will be only deallocated after the reference goes out of scope.

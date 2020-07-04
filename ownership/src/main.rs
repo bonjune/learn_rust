@@ -19,3 +19,27 @@ fn takes_ownership(s: String) -> String {
 fn makes_copy(c: i32) {
     println!("{}", c);
 }
+
+fn calc_len(s: &String) -> usize { // s is a reference to a String
+    s.len()
+} // s goes out of scope.
+// But s does not have onwership, nothing happends(e.g. drop does not happen)
+
+fn change(s: &mut String) -> () { // By default, references are immutable
+    s.push_str(", which has been changed") // thus, `mut` keyword is needed
+}
+
+// Erroneous rust code
+// fn dangle() -> &String {
+//     let s = String::from("hello");
+
+//     &s
+// }
+// s dropped here
+// &s may reference to the dropped value: dangling!
+
+fn no_dangle() -> String {
+    let s = String::from("no dangle");
+    s
+} // the ownership of s is moved to other value
+// no dangling occurs
